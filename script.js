@@ -44,7 +44,6 @@ form.addEventListener("submit", function (e) {
     nominal.push(kapital.toFixed(2));
     real.push(realwert.toFixed(2));
 
-    sparrate *= (1 + steigerung);
   }
 
   ergebnis.innerHTML =
@@ -138,5 +137,6 @@ function exportPDF() {
 
   pdf.save("ETF-Rechner-Ergebnis.pdf");
 }
+
 
 
