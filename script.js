@@ -36,23 +36,31 @@ form.addEventListener("submit", function (e) {
       kapital += sparrate;
       eingezahlt += sparrate;
       kapital *= (1 + monatsRendite);
+
+      realKapital += sparrate;
+      realKapital *= (1 + monatsRendite - monatsInflation);
     }
 
-    let realwert = kapital / Math.pow(1 + inflation, jahr);
+    let monatsRendite = nettoRendite / 12;
+    let monatsInflation = inflation / 12;
+
+    let kapital = start;
+    let realKapital = start;
+    let eingezahlt = start;
 
     labels.push("Jahr " + jahr);
     nominal.push(kapital.toFixed(2));
-    real.push(realwert.toFixed(2));
+    real.push(realKapital.toFixed(2));
   }
 
   ergebnis.innerHTML =
     "<p>💰 Endkapital nominal: <strong>" + kapital.toFixed(2) + " €</strong></p>" +
-    "<p>📉 Inflationsbereinigt: <strong>" + real[real.length - 1] + " €</strong></p>" +
+    "<p>📉 Inflationsbereinigt: <strong>" + realKapital.toFixed(2) + " €</strong></p>" +
     "<p>📥 Eingezahlt: " + eingezahlt.toFixed(2) + " €</p>";
 
   letzteBerechnung = {
     kapital: kapital,
-    realwert: real[real.length - 1],
+    realwert: realKapital,
     eingezahlt: eingezahlt
   };
 
@@ -136,6 +144,7 @@ function exportPDF() {
 
   pdf.save("ETF-Rechner-Ergebnis.pdf");
 }
+
 
 
 
