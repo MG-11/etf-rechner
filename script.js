@@ -23,8 +23,10 @@ form.addEventListener("submit", function (e) {
 
   let nettoRendite = rendite - ter;
   let monatsRendite = nettoRendite / 12;
+  let monatsInflation = inflation / 12;
 
   let kapital = start;
+  let realKapital = start;
   let eingezahlt = start;
 
   let labels = [];
@@ -34,19 +36,13 @@ form.addEventListener("submit", function (e) {
   for (let jahr = 1; jahr <= jahre; jahr++) {
     for (let monat = 1; monat <= 12; monat++) {
       kapital += sparrate;
-      eingezahlt += sparrate;
       kapital *= (1 + monatsRendite);
 
       realKapital += sparrate;
       realKapital *= (1 + monatsRendite - monatsInflation);
+
+      eingezahlt += sparrate;
     }
-
-    let monatsRendite = nettoRendite / 12;
-    let monatsInflation = inflation / 12;
-
-    let kapital = start;
-    let realKapital = start;
-    let eingezahlt = start;
 
     labels.push("Jahr " + jahr);
     nominal.push(kapital.toFixed(2));
@@ -144,6 +140,7 @@ function exportPDF() {
 
   pdf.save("ETF-Rechner-Ergebnis.pdf");
 }
+
 
 
 
