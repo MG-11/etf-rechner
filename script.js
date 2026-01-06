@@ -5,7 +5,6 @@ const startkapitalInput = document.getElementById("startkapital");
 const sparrateInput = document.getElementById("sparrate");
 const laufzeitInput = document.getElementById("laufzeit");
 const renditeInput = document.getElementById("rendite");
-const steigerungInput = document.getElementById("steigerung");
 const terInput = document.getElementById("ter");
 const inflationInput = document.getElementById("inflation");
 
@@ -19,7 +18,6 @@ form.addEventListener("submit", function (e) {
   let sparrate = Number(sparrateInput.value);
   let jahre = Number(laufzeitInput.value);
   let rendite = Number(renditeInput.value) / 100;
-  let steigerung = Number(steigerungInput.value) / 100;
   let ter = Number(terInput.value) / 100;
   let inflation = Number(inflationInput.value) / 100;
 
@@ -119,7 +117,6 @@ function exportPDF() {
   pdf.text(`Monatliche Sparrate: ${sparrateInput.value} €`, 10, y); y += 6;
   pdf.text(`Laufzeit: ${laufzeitInput.value} Jahre`, 10, y); y += 6;
   pdf.text(`Rendite: ${renditeInput.value} % p.a.`, 10, y); y += 6;
-  pdf.text(`Sparraten-Steigerung: ${steigerungInput.value} % p.a.`, 10, y); y += 6;
   pdf.text(`TER: ${terInput.value} % p.a.`, 10, y); y += 6;
   pdf.text(`Inflation: ${inflationInput.value} % p.a.`, 10, y); y += 10;
 
@@ -141,4 +138,5 @@ function exportPDF() {
 
   pdf.save("ETF-Rechner-Ergebnis.pdf");
 }
+
 
